@@ -1,0 +1,87 @@
+@use '../../scss/' as *;
+
+.header{
+    height: $header-height;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+    transition: height 0.3s ease,background-color 0.3s ease ;
+    
+    &.shrink{
+        height: $header-shrink-height;
+        background-color:$body-bg ;
+    }
+
+    &__wrap {
+        height: 100%;
+        padding: 0 2rem;
+        @include flex(center,space-between);
+
+        @include mobile{
+            justify-content:center;
+        }
+
+    }
+    
+    &__nav{
+        @include flex (center,unset);
+
+        li {
+            margin-left:2rem;
+            position: relative;
+            font-weight: 700;
+            font-size: 1.5rem;
+            &::before{
+                content:""; 
+                top:100%;
+                left: 50%;
+                transform: translateX(-50%);             
+                width: 0px;
+                height: 2px;
+                position: absolute;
+                background-color: $main-color;
+                transition: width 0.5s;
+            }
+            &.active::before,
+            &:hover::before{
+                width: 100%;
+            }             
+        }
+        @include mobile{
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 5rem;
+            width: 100%;
+            background-color: $body-bg;
+            padding: 0 2rem;
+            box-shadow: $box-shadow;
+            margin-left: 0;
+            @include flex(center,space-around)
+        }   
+
+      
+
+    }
+
+
+}
+.logo{
+    font-size: 2.5rem;
+    font-weight: 600;
+
+    @include flex(center,unset);
+   
+    img{
+        width: 50px;
+        margin-right: 10px;
+
+        @include mobile{
+            width: 30px;
+            margin-left: 0px;
+            margin-right: 0;
+        }
+    }
+}
